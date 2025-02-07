@@ -1,0 +1,69 @@
+﻿<Window x:Class="EmployeeManagementSystem.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Employee Management System" Height="600" Width="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="0,0,0,10">
+            <TextBlock Text="Employee Information" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Name:" Grid.Row="0" Grid.Column="0" Margin="5"/>
+                <TextBox Text="{Binding CurrentEmployee.Name}" Grid.Row="0" Grid.Column="1" Margin="5"/>
+
+                <TextBlock Text="Father Name:" Grid.Row="1" Grid.Column="0" Margin="5"/>
+                <TextBox Text="{Binding CurrentEmployee.FatherName}" Grid.Row="1" Grid.Column="1" Margin="5"/>
+
+                <TextBlock Text="CNIC:" Grid.Row="2" Grid.Column="0" Margin="5"/>
+                <TextBox Text="{Binding CurrentEmployee.CNIC}" Grid.Row="2" Grid.Column="1" Margin="5"/>
+
+                <TextBlock Text="Designation:" Grid.Row="3" Grid.Column="0" Margin="5"/>
+                <TextBox Text="{Binding CurrentEmployee.Designation}" Grid.Row="3" Grid.Column="1" Margin="5"/>
+
+                <TextBlock Text="Date of Birth:" Grid.Row="4" Grid.Column="0" Margin="5"/>
+                <DatePicker SelectedDate="{Binding CurrentEmployee.DateOfBirth}" Grid.Row="4" Grid.Column="1" Margin="5"/>
+
+                <TextBlock Text="Gender:" Grid.Row="5" Grid.Column="0" Margin="5"/>
+                <ComboBox ItemsSource="{Binding Genders}" SelectedItem="{Binding CurrentEmployee.Gender}" 
+                          Grid.Row="5" Grid.Column="1" Margin="5"/>
+
+                <TextBlock Text="Department:" Grid.Row="6" Grid.Column="0" Margin="5"/>
+                <ComboBox ItemsSource="{Binding Departments}" SelectedItem="{Binding CurrentEmployee.Department}" 
+                          Grid.Row="6" Grid.Column="1" Margin="5"/>
+
+                <TextBlock Text="Is Manager:" Grid.Row="7" Grid.Column="0" Margin="5"/>
+                <CheckBox IsChecked="{Binding CurrentEmployee.IsManager}" Grid.Row="7" Grid.Column="1" Margin="5"/>
+            </Grid>
+
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <Button Content="Save" Command="{Binding SaveCommand}" Width="100" Margin="5"/>
+                <Button Content="Display All" Command="{Binding DisplayAllCommand}" Width="100" Margin="5"/>
+            </StackPanel>
+        </StackPanel>
+
+        <DataGrid Grid.Row="1" 
+                  ItemsSource="{Binding Employees}" 
+                  AutoGenerateColumns="True"
+                  IsReadOnly="True"
+                  Margin="0,10,0,0"/>
+    </Grid>
+</Window>
